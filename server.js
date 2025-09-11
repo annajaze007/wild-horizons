@@ -2,10 +2,23 @@ import http from 'node:http'
 
 const PORT = 8000
 
+
 const server = http.createServer((req, res) => {
-    res.write('Partie 1\n') // envoie un premier morceau
-    res.write('Partie 2\n') // envoie un second morceau
-    res.end('Fin de la reponseeeee') // dernier morceau + on termine la réponse
+
+    console.log(req.url)
+
+    /*
+    Challenge:
+    Check the ‘url’ property on the req object. 
+    Only serve our string if it’s ‘/api’.
+    */
+
+    if (req.method === "GET") {
+        res.end('This is from the server')
+    }
+
+    else {res.end('This is not from the server')}
+
 })
 
-server.listen(PORT, () => console.log(`server running on port: ${PORT}`))
+server.listen(PORT, () => console.log(`Connected on port: ${PORT}`))
